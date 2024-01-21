@@ -134,7 +134,7 @@
             document.body.setAttribute('style', '--bg-color:' + Telegram.WebApp.backgroundColor);
         });
          // Получаем ID пользователя из контекста веб-приложения
-    const user_id = Telegram.WebAppUser();
+    const user_id = Telegram.WebAppUser;
 
     // Выводим ID пользователя в HTML-тег
     document.getElementById("user-id").textContent = user_id;
