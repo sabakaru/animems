@@ -64,29 +64,16 @@
 
 <body>
     <main>
-        <div align="center">
-            <a href="https://ton.org/"><img width="48" src="./assets/tapps.png" alt="logo of telegram web apps"></a>
-        </div>
-        <h1>Modals</h1>
-        <button onclick="Telegram.WebApp.showAlert('Hello World!');">Launch Alert</button>
-        <button onclick="showPopup();">Launch Popup</button>
+        <h1>Ваш ID пользователя Telegram:</h1>
+  <p id="user-id"></p>
 
-        <h1>Links</h1>
-        <ul>
-            <li>
-                <a href="javascript:Telegram.WebApp.openTelegramLink('https://t.me/trendingapps');">Open link within Telegram</a>
-            </li>
-            <li>
-                <a href="javascript:Telegram.WebApp.openLink('https://ton.org/');">Open link in external browser</a>
-            </li>
-            <li>
-                <a href="javascript:Telegram.WebApp.openLink('https://telegra.ph/api',{try_instant_view:true});">Open link inside Telegram webview</a>
-            </li>
-        </ul>
+  <script>
+    // Получаем ID пользователя из контекста веб-приложения
+    const user_id = window.Telegram.WebApp.WebAppUser.id();
 
-        <h1>Buttons</h1>
-        <button onclick="Telegram.WebApp.expand();">Expand Webview</button>
-        <button onclick="toggleMainButton();">Toggle Main Button</button>
+    // Выводим ID пользователя в HTML-тег
+    document.getElementById("user-id").textContent = user_id;
+  </script>
     </main>
     <div id="viewport"></div>
     <div id="viewport-params-size"></div>
@@ -100,7 +87,7 @@
         Telegram.WebApp.onEvent('themeChanged', function() {
             document.documentElement.className = Telegram.WebApp.colorScheme;
         });
-
+    
         // Show main button
         Telegram.WebApp.MainButton.setParams({
             text: 'Main Button'
@@ -120,7 +107,7 @@
                     {type: 'cancel'},
                 ]
             }, function(btn) {
-                if (btn === 'link') {
+                 if (btn=== 'link') {
                     Telegram.WebApp.openLink('https://ton.org/');
                 }
             });
