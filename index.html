@@ -1,21 +1,69 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <script src="index.js"></script>
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Telegram Web App Statistics</title>
+    <script>const WebApp = window.Telegram.WebApp;
+
+const invoices = await WebApp.getInvoices();
+const popups = await WebApp.getPopups();
+const qr_codes = await WebApp.getQrCodes();
+
+document.querySelector('.statistics .statistic:first-child').innerHTML = `
+  <h2>Invoices</h2>
+  <p>
+    <strong>Opened:</strong> ${invoices.opened}
+    <br>
+    <strong>Closed:</strong> ${invoices.closed}
+  </p>
+`;
+
+document.querySelector('.statistics .statistic:nth-child(2)').innerHTML = `
+  <h2>Popups</h2>
+  <p>
+    <strong>Opened:</strong> ${popups.opened}
+    <br>
+    <strong>Closed:</strong> ${popups.closed}
+  </p>
+`;
+
+document.querySelector('.statistics .statistic:nth-child(3)').innerHTML = `
+  <h2>QR codes</h2>
+  <p>
+    <strong>Scanned:</strong> ${qr_codes.scanned}
+    <br>
+    <strong>Received:</strong> ${qr_codes.received}
+  </p>
+`;
+</script>
 </head>
 <body>
-<div class="lobby">
-    <button id="create", onclick="createLobby()">Create</button>
-    <button id="select", onclick="joinLobby()">Select</button>
-</div>
-<div class="create"></div>
-<div class="game">
-
-</div>
+  <h1>Telegram Web App Statistics</h1>
+  <div class="statistics">
+    <div class="statistic">
+      <h2>Invoices</h2>
+      <p>
+        <strong>Opened:</strong> {{invoices.opened}}
+        <br>
+        <strong>Closed:</strong> {{invoices.closed}}
+      </p>
+    </div>
+    <div class="statistic">
+      <h2>Popups</h2>
+      <p>
+        <strong>Opened:</strong> {{popups.opened}}
+        <br>
+        <strong>Closed:</strong> {{popups.closed}}
+      </p>
+    </div>
+    <div class="statistic">
+      <h2>QR codes</h2>
+      <p>
+        <strong>Scanned:</strong> {{qr_codes.scanned}}
+        <br>
+        <strong>Received:</strong> {{qr_codes.received}}
+      </p>
+    </div>
+  </div>
 </body>
 </html>
